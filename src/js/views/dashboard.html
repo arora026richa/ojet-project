@@ -1,0 +1,28 @@
+<div class="oj-hybrid-padding">
+  <h1>Product Information</h1>
+  <div id="activitiesContainer">
+    <h3 id="activitiesHeader">Activities</h3>
+    <oj-list-view id="activitiesList" aria-labelledby="activitiesHeader" data="[[activityDataProvider]]" gridlines.item="visible">
+      <template slot="itemTemplate">
+        <div>
+          <strong>
+             <oj-bind-text value="[[$current.data.name]]"></oj-bind-text>
+          </strong>
+       </div>
+      </template>
+    </oj-list-view>
+  </div>
+  <div id="itemDetailsContainer">
+    <h3>Item Details</h3>
+    <oj-label for="basicSelect">Select Chart:</oj-label>
+     <oj-select-single id="basicSelect" class="selectSingleStyle" data="[[chartTypesDP]]" value="{{val}}">
+    </oj-select-single>
+    <oj-chart id="barChart" type="[[val]]" data="[[chartDataProvider]]" animation-on-display="auto"
+      animation-on-data-change="auto" hover-behavior="dim" class="chartStyle">
+      <template slot='itemTemplate' data-oj-as='item'>
+        <oj-chart-item value='[[item.data.value]]' group-id='[[ [item.data.group] ]]' series-id='[[item.data.series]]'>
+        </oj-chart-item>
+      </template>
+    </oj-chart>
+  </div>
+</div>
